@@ -2,10 +2,10 @@
 # scm_breeze.sh must be sourced, and not executed in a sub-shell.
 # e.g "source ~/.scm_breeze/scm_breeze.sh"
 # ------------------------------------------------------------
-export scmbDir="$(dirname ${BASH_SOURCE:-$0})"
+export scmbDir=$(dirname "${BASH_SOURCE:-$0}")
 
 # Load config
-[ -s "$HOME/.scmbrc" ] && . "$HOME/.scmbrc"
+[ -s "${HOME}/.scmbrc" ] && . "${HOME}/.scmbrc"
 
 # Shared functions
 source "$scmbDir/lib/scm_breeze.sh"
@@ -14,9 +14,9 @@ source "$scmbDir/lib/design.sh"
 
 # Git
 # ------------------------------------------------------------
-if [[ -s "$HOME/.git.scmbrc" ]]; then
+if [[ -s "${HOME}/.git.scmbrc" ]]; then
   # Load git config
-  source "$HOME/.git.scmbrc"
+  source "${HOME}/.git.scmbrc"
   source "$scmbDir/lib/git/helpers.sh"
   source "$scmbDir/lib/git/aliases.sh"
   source "$scmbDir/lib/git/keybindings.sh"

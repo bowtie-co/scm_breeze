@@ -3,23 +3,23 @@
 export scmbDir="$( cd -P "$( dirname "$0" )" && pwd )"
 
 # Symlink to ~/.scm_breeze if installing from another path
-if [ "$scmbDir" != "$HOME/.scm_breeze" ]; then
-  ln -fs "$scmbDir" "$HOME/.scm_breeze"
+if [ "$scmbDir" != "${HOME}/.scm_breeze" ]; then
+  ln -fs "$scmbDir" "${HOME}/.scm_breeze"
 fi
 
 # This loads SCM Breeze into the shell session.
-exec_string="[ -s \"$HOME/.scm_breeze/scm_breeze.sh\" ] && source \"$HOME/.scm_breeze/scm_breeze.sh\""
+exec_string="[ -s \"${HOME}/.scm_breeze/scm_breeze.sh\" ] && source \"${HOME}/.scm_breeze/scm_breeze.sh\""
 
 # Add line to bashrc, zshrc, and bash_profile if not already present.
 added_to_profile=false
 already_present=false
 for rc in bashrc zshrc bash_profile; do
-  if [ -s "$HOME/.$rc" ]; then
-    if grep -q "$exec_string" "$HOME/.$rc"; then
+  if [ -s "${HOME}/.$rc" ]; then
+    if grep -q "$exec_string" "${HOME}/.$rc"; then
       printf "== Already installed in '~/.$rc'\n"
       already_present=true
     else
-      printf "\n$exec_string\n" >> "$HOME/.$rc"
+      printf "\n$exec_string\n" >> "${HOME}/.$rc"
       printf "== Added SCM Breeze to '~/.$rc'\n"
       added_to_profile=true
     fi

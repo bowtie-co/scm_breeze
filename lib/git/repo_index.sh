@@ -119,7 +119,7 @@ function git_index() {
 }
 
 _git_index_dirs_without_home() {
-  sed -e "s/--.*//" -e "s%$HOME%~%" $GIT_REPO_DIR/.git_index
+  sed -e "s/--.*//" -e "s%${HOME}%~%" $GIT_REPO_DIR/.git_index
 }
 
 # Recursively searches for git repos in $GIT_REPO_DIR
@@ -253,7 +253,7 @@ _git_index_update_all_branches() {
 
 # Updates all git repositories with clean working directories.
 # Use the following cron configuration:
-# */10 * * * * /bin/bash -c '. $HOME/.bashrc && git_index --rebuild && git_index --update-all'
+# */10 * * * * /bin/bash -c '. ${HOME}/.bashrc && git_index --rebuild && git_index --update-all'
 function _git_index_update_all() {
   echo -e "== Safely updating all local branches in $_bld_col$(_git_index_count)$_txt_col repos...\n"
   _git_index_batch_cmd _git_index_update_all_branches

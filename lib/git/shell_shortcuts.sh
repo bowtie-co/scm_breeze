@@ -28,7 +28,7 @@ if [ "$shell_command_wrapping_enabled" = "true" ] || [ "$bash_command_wrapping_e
 
       # Special check for 'cd', to make sure SCM Breeze is loaded after RVM
       if [ "$cmd" = 'cd' ]; then
-        if [ -e "$HOME/.rvm" ] && ! type rvm > /dev/null 2>&1; then
+        if [ -e "${HOME}/.rvm" ] && ! type rvm > /dev/null 2>&1; then
           echo -e "\\033[0;31mSCM Breeze must be loaded \\033[1;31mafter\\033[0;31m RVM, otherwise there will be a conflict when RVM wraps the 'cd' command.\\033[0m"
           echo -e "\\033[0;31mPlease move the line that loads SCM Breeze to the bottom of your ~/.bashrc\\033[0m"
           continue
@@ -156,7 +156,7 @@ if [ "$shell_ls_aliases_enabled" = "true" ] && builtin command -v ruby > /dev/nu
     # Replace user/group with user symbol, if defined at ~/.user_sym
     # Before : -rw-rw-r-- 1 ndbroadbent ndbroadbent 1.1K Sep 19 21:39 scm_breeze.sh
     # After  : -rw-rw-r-- 1 𝐍  𝐍  1.1K Sep 19 21:39 scm_breeze.sh
-    if [ -e "$HOME"/.user_sym ]; then
+    if [ -e "${HOME}"/.user_sym ]; then
       # Little bit of ruby golf to rejustify the user/group/size columns after replacement
       # TODO(ghthor): Convert this to a cat <<EOF to improve readibility
       function rejustify_ls_columns(){
@@ -165,9 +165,9 @@ if [ "$shell_ls_aliases_enabled" = "true" ] && builtin command -v ruby > /dev/nu
                  puts o.lines.map{|l|l.sub(re){|m|\"%s%-#{u}s %-#{g}s%#{s}s \"%[\$1,*\$3.split]}}"
       }
 
-      local USER_SYM=$(/bin/cat $HOME/.user_sym)
-      if [ -f "$HOME/.staff_sym" ]; then
-        local STAFF_SYM=$(/bin/cat $HOME/.staff_sym)
+      local USER_SYM=$(/bin/cat ${HOME}/.user_sym)
+      if [ -f "${HOME}/.staff_sym" ]; then
+        local STAFF_SYM=$(/bin/cat ${HOME}/.staff_sym)
         ll_output=$(echo "$ll_output" | \
           \sed -$SED_REGEX_ARG "s/ $USER  staff/ $USER_SYM  $STAFF_SYM /g" | \
           rejustify_ls_columns)

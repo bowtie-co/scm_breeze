@@ -10,8 +10,8 @@
 export scmbDir="$( cd -P "$( dirname "$0" )" && pwd )"
 
 # Symlink to ~/.scm_breeze if installing from another path
-if [ ! -s "$HOME/.scm_breeze" ] && [ "$scmbDir" != "$HOME/.scm_breeze" ]; then
-  ln -fs "$scmbDir" "$HOME/.scm_breeze"
+if [ ! -s "${HOME}/.scm_breeze" ] && [ "$scmbDir" != "${HOME}/.scm_breeze" ]; then
+  ln -fs "$scmbDir" "${HOME}/.scm_breeze"
 
   # Load SCM Breeze update scripts
   source "$scmbDir/lib/scm_breeze.sh"
@@ -20,6 +20,6 @@ if [ ! -s "$HOME/.scm_breeze" ] && [ "$scmbDir" != "$HOME/.scm_breeze" ]; then
 fi
 
 # This loads SCM Breeze into the shell session.
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+[ -s "${HOME}/.scm_breeze/scm_breeze.sh" ] && source "${HOME}/.scm_breeze/scm_breeze.sh"
 
 

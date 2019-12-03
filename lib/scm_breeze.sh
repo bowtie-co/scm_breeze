@@ -90,20 +90,20 @@ _create_or_patch_scmbrc() {
   # Process '~/.scmbrc' and '~/.*.scmbrc'
   for prefix in "" "git."; do
     # Create file from example if it doesn't already exist
-    if ! [ -e "$HOME/.$prefix""scmbrc" ]; then
-      cp "$scmbDir/$prefix""scmbrc.example" "$HOME/.$prefix""scmbrc"
+    if ! [ -e "${HOME}/.$prefix""scmbrc" ]; then
+      cp "$scmbDir/$prefix""scmbrc.example" "${HOME}/.$prefix""scmbrc"
       printf "== '~/.$prefix""scmbrc' has been created. Please edit this file to change SCM Breeze settings.\n"
     # If file exists, attempt to update it with any new settings
     elif [ -n "$1" ]; then
       # Create diff of example file, substituting example file for user's config.
       git diff $1 "$prefix""scmbrc.example" | sed "s/$prefix""scmbrc.example/.$prefix""scmbrc/g" >| $patchfile
       if [ -s $patchfile ]; then  # If patchfile is not empty
-        cd "$HOME"
+        cd "${HOME}"
         # If the patch cannot be applied cleanly, show the updates and tell user to update file manually.
-        if ! patch -f "$HOME/.$prefix""scmbrc" $patchfile; then
+        if ! patch -f "${HOME}/.$prefix""scmbrc" $patchfile; then
           printf "== \033[0;31mUpdates could not be applied to '\033[1m~/.$prefix""scmbrc\033[0;31m'.\033[0m\n"
           printf "== Please look at the following changes and manually update '~/.$prefix""scmbrc', if necessary.\n\n"
-          cat "$HOME/.$prefix""scmbrc.rej"
+          cat "${HOME}/.$prefix""scmbrc.rej"
         fi
         cd "$scmbDir"
       fi

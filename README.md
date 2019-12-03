@@ -35,7 +35,7 @@ source ~/.bashrc   # or source ~/.zshrc
 The install script creates required default configs and adds the following line
 to your `.bashrc` or `.zshrc`:
 
-`[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"`
+`[ -s "${HOME}/.scm_breeze/scm_breeze.sh" ] && source "${HOME}/.scm_breeze/scm_breeze.sh"`
 
 **Note:** SCM Breeze performs much faster if you have ruby installed.
 
@@ -399,7 +399,7 @@ any new settings are added.
 The uninstall script removes the following line from your `.bashrc` or
 `.zshrc`:
 
-`[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"`
+`[ -s "${HOME}/.scm_breeze/scm_breeze.sh" ] && source "${HOME}/.scm_breeze/scm_breeze.sh"`
 
 
 ## Contributing
